@@ -154,7 +154,8 @@
         }
       });
       next =
-        imagesCollection[index] ||
+      // pour revenir en arrière dans la modale d'img
+        imagesCollection[index - 1] ||
         imagesCollection[imagesCollection.length - 1];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
@@ -192,7 +193,8 @@
           index = i;
         }
       });
-      next = imagesCollection[index] || imagesCollection[0];
+      //+1 pour aller de l'avant
+      next = imagesCollection[index + 1] || imagesCollection[0];
       $(".lightboxImage").attr("src", $(next).attr("src"));
     },
     createLightBox(gallery, lightboxId, navigation) {
@@ -258,6 +260,8 @@
             .show(300);
         }
       });
+      // ajoute la classe manquante quand on change de cat.
+      $(".nav-link[data-images-toggle='" + tag + "']").addClass("active active-tag");
     }
   };
 })(jQuery);
